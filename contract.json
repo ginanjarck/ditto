@@ -70,7 +70,7 @@
   {
     "httpRequest": {
       "method": "GET",
-      "path": "/va/payments",
+      "path": "/bca/va/payments",
       "queryString": {
         "CompanyCode": "70001",
         "RequestID": "20200207151515"
@@ -78,13 +78,13 @@
     },
     "httpResponse": {
       "statusCode": 200,
-      "body": "{\"Transaction Data\":[{\"DetailBills\":[{\"BillReference\":\"\",\"BillNumber\":\"12345\"}],\"RequestID\":\"20200207151515\",\"TransactionDate\":\"2020-02-02T16:17:00.000+07:00\",\"PaymentFlagStatus\":\"Success\",\"Reference\":\"01234567890\",\"TotalAmount\":\"100000\",\"PaidAmount\":\"100000\"}]}"
+      "body": "{\"TransactionData\":[{\"DetailBills\":[{\"BillReference\":\"\",\"BillNumber\":\"12345\"}],\"RequestID\":\"20200207151515\",\"TransactionDate\":\"2020-02-02T16:17:00.000+07:00\",\"PaymentFlagStatus\":\"Success\",\"Reference\":\"01234567890\",\"TotalAmount\":\"100000\",\"PaidAmount\":\"100000\"}]}"
     }
   },
   {
     "httpRequest": {
       "method": "GET",
-      "path": "/va/payments",
+      "path": "/bca/va/payments",
       "queryString": {
         "CompanyCode": ".*",
         "RequestID": ".*"
@@ -92,7 +92,24 @@
     },
     "httpResponse": {
       "statusCode": 200,
-      "body": "{\"Transaction Data\":[]}"
+      "body": "{\"TransactionData\":[]}"
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "POST",
+      "path": "/bca/api/oauth/token",
+      "headers": {
+        "Authorization": "Basic .*",
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      "body": {
+        "json": "grant_type=client_credentials"
+      }
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "body": "{\"access_token\":\"2YotnFZFEjr1zCsicMWpAA\",\"token_type\":\"Bearer\",\"expires_in\":3600,\"scope\":\"resource.WRITE resource.READ\"}"
     }
   }
 ]
